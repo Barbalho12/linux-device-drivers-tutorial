@@ -20,9 +20,9 @@ Este post tem objetivo de introduzir o desenvolvimento de device drivers (mecani
 
 ## 2. Passos para a criação dos device drivers ##
 
-### 2.1. A ###
+### i. A ###
 
-### 2.2. LKM - Loadable Kernel Modules ###
+### ii. LKM - Loadable Kernel Modules ###
 
 Com o LKM é possível adicionar e remover capacidades do kernel em tempo de execução. Chamamos de módulo cada unidade que estenda as capacidades do kernel.
 
@@ -32,21 +32,33 @@ Comandos:
  * modprobe
  * depmod
 
-### 2.3. Hello World ###
+### iii. Hello World ###
 
 Este projeto é o Hello World para o desenvolvimento de drivers. A estrutura da programação é um pouco diferente da estrutura de programação tradicional, pois, em um arquivo .c não temos nenhum método main. Vejamos a seguir como funciona a estrutura do código deste projeto.
 
-// explicação do código
+// explicação do código com imagens
 
-### 2.4. Compilando ###
+### iv. Compilando ###
 
 Para compilarmos o projeto, precisamos apenas de utilizar o seguinte comando no terminal:
 
     make
 
-### 2.5. Inserindo e removendo módulos ###
+### v. Inserindo e removendo módulos ###
 
+...
 
+    ismod hello.ko
+
+...
+
+    ismod
+
+...
+
+    rmmod hello
+
+    tail -f /var/log/syslog
 
 ## 3. Membros ##
 
