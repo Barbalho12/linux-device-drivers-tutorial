@@ -11,8 +11,9 @@ Tutorial com exemplos para criação de Devices Drivers para Linux.
   2. Hello World
   2. Compilando
   2. Inserindo e removendo módulos
-3. Membros
-4. Fontes
+3. Conclusão
+4. Membros
+5. Fontes
 
 ## 1. Introdução ##
 
@@ -62,9 +63,11 @@ Para compilarmos o projeto, precisamos apenas de utilizar o seguinte comando no 
 
     tail -f /var/log/syslog
 
-## 3. Membros ##
+## 3. Conclusão ##
+
+## 4. Membros ##
 
 * Breno Maurício de Freitas Viana
 * Felipe Barbalho Rocha
 
-## 4. Fontes ##
+## 5. Fontes ##
