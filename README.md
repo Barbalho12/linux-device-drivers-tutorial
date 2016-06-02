@@ -29,13 +29,21 @@ Este post tem objetivo de introduzir o desenvolvimento de device drivers (mecani
 
 Antes de iniciarmos o desenvolvimento do projeto devemos ter em mente, . Com o LKM é possível adicionar e remover capacidades do kernel em tempo de execução. Chamamos de módulo cada unidade que estenda as capacidades do kernel.
 
-Comandos:
+... :
+
+Para adicionar módulos ao kernel:
 
     insmod
 
+Para remover módulos ao kernel:
+
     rmmod
 
+Para adicionar/remover módulos já presentes no kernel:
+
     modprobe
+
+Gera modules.dep e map:
 
     depmod
 
@@ -43,7 +51,7 @@ Comandos:
 
 Este projeto é o Hello World para o desenvolvimento de drivers. A estrutura da programação é um pouco diferente da estrutura de programação tradicional, pois, em um arquivo .c não temos nenhum método main. Vejamos a seguir como funciona a estrutura do código deste projeto.
 
-O código a seguir é do arquivo hello.c, os comentários explicam o código em detalhes.
+O código a seguir é do arquivo hello.c, os comentários explicam a funcionalidade de cada função.
 
 ```c
 #include <linux/init.h>
@@ -69,18 +77,18 @@ module_exit(hello_exit);
 O tipo "__init" indica que o módulo pode destruir essa função após o carregamento.
 
 ```c
-stativ __init int hello_init(void) {...};
+static __init int hello_init(void) {...};
 ```
 
 O tipo "__exit" indica que o módulo pode destruir essa função só vai ser chamada na remoção do módulo.
 
 ```c
-stativ __exit int hello_exit(void) {...};
+static __exit int hello_exit(void) {...};
 ```
 
 ### iv. Compilando ###
 
-Para compilarmos o projeto, precisamos apenas de utilizar o seguinte comando no terminal:
+Uma vez que temos um arquivo Makefile, para compilarmos o projeto, basta apenas de utilizar o seguinte comando no terminal:
 
     make
 
