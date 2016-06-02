@@ -1,21 +1,31 @@
 # Linux Device Drivers Tutorial #
 
-Tutorial com exemplos para criação de Devices Drivers para Linux
+Tutorial com exemplos para criação de Devices Drivers para Linux.
 
-##  Índice ##
+## Índice ##
 
 1. Introdução
 2. 
+3. Membros
+4. Fontes
 
-##  Introdução ##
+## 1. Introdução ##
 
-##   ##
+Este post tem objetivo de introduzir o desenvolvimento de drivers para distribuições Linux disponibilizando um projeto para o leitor, ao final deste relatório, ser capaz de prosseguir o aprendizado. Neste projeto é um drive para ... .
 
-##   ##
+## 2. Passos ##
 
-##  Membros ##
+### ###
+
+### ###
+
+### ###
+
+### ###
+
+## 3. Membros ##
 
 * Breno Maurício de Freitas Viana
 * Felipe Barbalho Rocha
 
-##  Fontes ##
+## 4. Fontes ##
