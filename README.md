@@ -58,6 +58,8 @@ Para compilarmos o projeto, precisamos apenas de utilizar o seguinte comando no 
 
     rmmod hello
 
+...
+
     tail -f /var/log/syslog
 
 ## 3. Membros ##
