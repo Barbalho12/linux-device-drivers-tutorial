@@ -11,9 +11,10 @@ Tutorial com exemplos para criação de Devices Drivers para Linux.
   2. Hello World
   2. Compilando
   2. Inserindo e removendo módulos
-3. Conclusão
-4. Membros
-5. Fontes
+3. USB
+4. Conclusão
+5. Membros
+6. Fontes
 
 ## 1. Introdução ##
 
@@ -61,12 +62,14 @@ MODULE_LICENSE("Dual BSD/GPL");
 
 // Este método é chamado quando o módulo é carregado
 static __init int hello_init(void) {
+	// Função parecida como printf
 	printk(KERN_INFO "Hello, world!\n");
 	return 0;
 }
 
 // Este método é chamado quando o módulo é removido
 static __exit void hello_exit(void) {
+	// Função parecida como printf
 	printk("Goodbye, curel world!\n");
 }
 
@@ -92,29 +95,37 @@ Uma vez que temos um arquivo Makefile, para compilarmos o projeto, basta apenas 
 
     make
 
-### v. Inserindo e removendo módulos ###
+### v. Manipulando os módulos ###
 
-...
+Para adicionarmos um módulo basta abrirmos o terminal na pasta onde o módulo está contruído e executar o seguinte comando:
 
     ismod hello.ko
 
-...
+Para verificar se o módulo está no kernel.
 
     ismod
 
-...
+Para remover o módulo:
 
     rmmod hello
 
-...
+Para ... :
 
     tail -f /var/log/syslog
 
-## 3. Conclusão ##
+## 3. USB ##
 
-## 4. Membros ##
+...
+
+## 4. Conclusão ##
+
+Podemos 
+
+## 5. Membros ##
 
 * Breno Maurício de Freitas Viana
 * Felipe Barbalho Rocha
 
-## 5. Fontes ##
+## 6. Fontes ##
+
+Aula de módulos e drivers.
