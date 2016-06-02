@@ -43,24 +43,39 @@ Comandos:
 
 Este projeto é o Hello World para o desenvolvimento de drivers. A estrutura da programação é um pouco diferente da estrutura de programação tradicional, pois, em um arquivo .c não temos nenhum método main. Vejamos a seguir como funciona a estrutura do código deste projeto.
 
+O código a seguir é do arquivo hello.c, os comentários explicam o código em detalhes.
+
 ```c
 #include <linux/init.h>
 #include <linux/module.h>
 
 MODULE_LICENSE("Dual BSD/GPL");
 
+// Este método é chamado quando o módulo é carregado
 static __init int hello_init(void) {
 	printk(KERN_INFO "Hello, world!\n");
 	return 0;
 }
 
+// Este método é chamado quando o módulo é removido
 static __exit void hello_exit(void) {
 	printk("Goodbye, curel world!\n");
 }
 
-
 module_init(hello_init);
 module_exit(hello_exit);
+```
+
+O tipo "__init" indica que o módulo pode destruir essa função após o carregamento.
+
+```c
+stativ __init int hello_init(void) {...};
+```
+
+O tipo "__exit" indica que o módulo pode destruir essa função só vai ser chamada na remoção do módulo.
+
+```c
+stativ __exit int hello_exit(void) {...};
 ```
 
 ### iv. Compilando ###
