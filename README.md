@@ -30,7 +30,7 @@ Não é necessário instalar nenhum outro software, porém, é necessário ter u
 
 ### ii. LKM - Loadable Kernel Modules ###
 
-Antes de iniciarmos o desenvolvimento do projeto, vamos aprender como adicioanr e remover um módulo do kernel. Para isso, utilizaremos o Loadable Kernel Modules (LKM) é possível adicionar e remover capacidades do kernel em tempo de execução. Chamamos de módulo cada unidade que estenda as capacidades do kernel.
+Antes de iniciarmos o desenvolvimento do projeto, vamos aprender como adicionar e remover um módulo do kernel. Para isso, utilizaremos o Loadable Kernel Modules (LKM) é possível adicionar e remover capacidades do kernel em tempo de execução. Chamamos de módulo cada unidade que estenda as capacidades do kernel.
 
 Os seguintes programas possuem funções importantes para a adicionar ou remover de módulos do kernel:
 
@@ -99,7 +99,7 @@ Uma vez que temos um arquivo Makefile, para compilarmos o projeto, basta apenas 
 
 ### v. Manipulando os módulos ###
 
-Para adicionarmos um módulo basta abrirmos o terminal na pasta onde o módulo está contruído e executar o seguinte comando:
+Para adicionarmos um módulo basta abrirmos o terminal na pasta onde o módulo está construído e executar o seguinte comando:
 
     insmod hello.ko
 
@@ -117,15 +117,15 @@ Para ... :
 
 ## 3. USB ##
 
-Agora que já compreendemos o hello wolrd do desenvolvimento de drivers para o kernel do linux, vamos então aprender como desenvolver um driver para reconhecimento de dispositivos USB.
+Agora que já compreendemos o hello wolrd do desenvolvimento de drivers para o kernel do Linux, vamos então aprender como desenvolver um driver para reconhecimento de dispositivos USB.
 
-### i. Device Driverpara Arduino ###
+### i. Device Driver para Arduino ###
 
-Para testar um device driver para controle de conexção USB, irememos utilizar um Arduino. Primeiro execute uma consulta ao syslog:
+Para testar um Device Driver para controle de conexão USB, iremos utilizar um Arduino. Primeiro execute uma consulta ao syslog:
 
     tail -f /var/log/syslog
 
-Depois que executar o comando, conecte o arduino, o drive padrão da USB irá retornar um conjunto de informações sobre o dispositivo. verifique dois atributos "idVendor" e "idProduct" e altere as constantes do código seguir e salve em um arquivo 'usb-minimal.c':   
+Depois que executar o comando, conecte o Arduino, o drive padrão da USB irá retornar um conjunto de informações sobre o dispositivo. Verifique dois atributos "idVendor" e "idProduct" e altere as constantes do código seguir e salve em um arquivo 'usb-minimal.c':   
 
 ```c
 #include <linux/kernel.h>
@@ -214,7 +214,7 @@ clean:
 		make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
 
-Executeo make:
+Execute o make:
 
     make
     
@@ -222,7 +222,7 @@ Adicione o módulo ao Kernel:
 
     insmod usb-minimal.ko
     
-Consulte o syslog, e verifique conectar e desconectar o arduino por meio da interface USB:
+Consulte o syslog, e verifique conectar e desconectar o Arduino por meio da interface USB:
 
     tail -f /var/log/syslog
 
@@ -233,7 +233,7 @@ Consulte o syslog, e verifique conectar e desconectar o arduino por meio da inte
 
 ## 4. Conclusão ##
 
-Agora o leitor já possui conhecimento suficiente para devevolver um driver simples para qualquer sistema operacional que possua o Linux como kernel e pode prosseguir o aprendizado do desenvolvimento de drivers sem problemas.
+Agora o leitor já possui conhecimento suficiente para desenvolver um driver simples para qualquer sistema operacional que possua o Linux como kernel e pode prosseguir o aprendizado do desenvolvimento de drivers sem problemas.
 
 ## 5. Membros ##
 
