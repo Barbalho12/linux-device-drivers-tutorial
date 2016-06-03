@@ -229,7 +229,7 @@ Consulte o syslog, e verifique conectar e desconectar o arduino por meio da inte
 
 ### ii. Resultados do syslog exibido pelo usb-minimal: ###
 
-[FIGURA]
+![USB_out_Log](usb/out_syslog.png?raw=true "Saída do syslog")
 
 ## 4. Conclusão ##
 
