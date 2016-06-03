@@ -101,7 +101,7 @@ Uma vez que temos um arquivo Makefile, para compilarmos o projeto, basta apenas 
 
 Para adicionarmos um módulo basta abrirmos o terminal na pasta onde o módulo está contruído e executar o seguinte comando:
 
-    ismod hello.ko
+    insmod hello.ko
 
 Para verificar se o módulo está no kernel.
 
@@ -119,11 +119,117 @@ Para ... :
 
 Agora que já compreendemos o hello wolrd do desenvolvimento de drivers para o kernel do linux, vamos então aprender como desenvolver um driver para reconhecimento de dispositivos USB.
 
-### i. ###
+### i. Device Driverpara Arduino ###
 
-### ii. ###
+Para testar um device driver para controle de conexção USB, irememos utilizar um Arduino. Primeiro execute uma consulta ao syslog:
 
-### iii. ###
+    tail -f /var/log/syslog
+
+Depois que executar o comando, conecte o arduino, o drive padrão da USB irá retornar um conjunto de informações sobre o dispositivo. verifique dois atributos "idVendor" e "idProduct" e altere as constantes do código seguir e salve em um arquivo 'usb-minimal.c':   
+
+```c
+#include <linux/kernel.h>
+#include <linux/init.h>
+#include <linux/module.h>
+#include <linux/slab.h>
+#include <linux/module.h>
+#include <linux/kref.h>
+#include <linux/uaccess.h>
+#include <linux/usb.h>
+#include <linux/mutex.h>
+
+MODULE_LICENSE("Dual BSD/GPL");
+
+
+#define VENDOR_ID	0x2341
+#define PRODUCT_ID	0x0043
+
+
+static const struct usb_device_id table[] = {
+	{ USB_DEVICE(VENDOR_ID, PRODUCT_ID) },
+	{ }
+};
+MODULE_DEVICE_TABLE(usb, table);
+
+
+static int myprobe(struct usb_interface *interface, const struct usb_device_id *id) {
+	printk(KERN_INFO "Probe()\n");
+	return 0;
+}
+
+static void mydisconnect(struct usb_interface *interface){
+	printk(KERN_INFO "Disconnect()\n");
+}
+
+static void mydraw_down(struct usb_skel *dev){
+	printk(KERN_INFO "DrawDown()\n");
+}
+
+static int mysuspend(struct usb_interface *intf, pm_message_t message) {
+	printk(KERN_INFO "Suspend()\n");
+	return 0;
+}
+
+static int myresume(struct usb_interfae *intf){
+	printk(KERN_INFO "Resume()\n");
+	return 0;
+}
+
+
+static int mypre_reset(struct usb_interfae *intf){
+	printk(KERN_INFO "Pre_reset()\n");
+	return 0;
+}
+
+
+static int mypost_reset(struct usb_interfae *intf){
+	printk(KERN_INFO "Post_reset()\n");
+	return 0;
+}
+
+
+
+static struct usb_driver mydriver = {
+	.name =		"mydriver",
+	.probe =	myprobe,
+	.disconnect = 	mydisconnect,
+	.suspend = 	mysuspend,
+	.resume =	myresume,
+	.pre_reset = 	mypre_reset,
+	.post_reset = 	mypost_reset,
+	.id_table = 	table,
+	.supports_autosuspend = 1,
+};
+
+module_usb_driver(mydriver);
+```
+
+Feito isso, crie um arquivo 'Makefile' e salve o seguinte conteúdo:
+
+```make
+obj-m += usb-minimal.o
+all:
+		make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+clean:
+		make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+```
+
+Executeo make:
+
+    make
+    
+Adicione o módulo ao Kernel: 
+
+    insmod usb-minimal.ko
+    
+Consulte o syslog, e verifique conectar e desconectar o arduino por meio da interface USB:
+
+    tail -f /var/log/syslog
+
+
+### ii. Resultados do syslog exibido pelo usb-minimal: ###
+
+[FIGURA]
 
 ## 4. Conclusão ##
 
