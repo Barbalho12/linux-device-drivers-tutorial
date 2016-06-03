@@ -1,1 +1,0 @@
-cmd_/home/barbalho/Downloads/USB-KERNEL/usb-minimal.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/barbalho/Downloads/USB-KERNEL/usb-minimal.ko /home/barbalho/Downloads/USB-KERNEL/usb-minimal.o /home/barbalho/Downloads/USB-KERNEL/usb-minimal.mod.o
